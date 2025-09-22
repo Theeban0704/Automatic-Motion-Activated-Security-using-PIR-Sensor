@@ -61,10 +61,46 @@ Step 7: Save Your Work
 
 # Code:
 
+#define trigPin  7
+#define echoPin  6
+int buzzer = 2;
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(trigPin, OUTPUT);
+  pinMode(echoPin, INPUT);
+  
+}
+
+void loop()
+{
+  long highPulseDuration;
+  int calculateDistancecm;
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  highPulseDuration = pulseIn(echoPin, HIGH);
+  calculateDistancecm =highPulseDuration*0.034/2;
+  Serial.print("Calculated Distance:");
+  Serial.print(calculateDistancecm);
+  Serial.println("cm");
+  if (calculateDistancecm <100){
+    digitalWrite(2,HIGH);
+    delay(1000);
+  }else{
+    digitalWrite(2,LOW);
+    delay(1000);
+  }
+}
 
 
 # Output:
 
+
+![WhatsApp Image 2025-09-22 at 14 09 07_bf55703f](https://github.com/user-attachments/assets/7aa57812-0ed4-4541-9180-8487acf6dae9)
 
 
 
